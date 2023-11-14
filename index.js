@@ -696,7 +696,14 @@ class Peer extends stream.Duplex {
   _onConnectionStateChange () {
     if (this.destroyed) return
     if (this._pc.connectionState === 'failed') {
-      this.destroy(errCode(new Error('Connection failed.'), 'ERR_CONNECTION_FAILURE'))
+      this._SuperHighLayTimeout = setTimeout(() => {
+        this.destroy(errCode(new Error('Connection failed.'), 'ERR_CONNECTION_FAILURE'))
+      }, 60000);
+    } else {
+      if ( this._SuperHighLayTimeout ) {
+        clearTimeout( this._SuperHighLayTimeout );
+        this._SuperHighLayTimeout = null;
+      }
     }
   }
 
