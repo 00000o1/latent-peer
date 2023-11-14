@@ -4,6 +4,8 @@
 
 Like, *seconds*. SHOCKING! 🤣
 
+Moving to v10
+
 original simple-peer README starts below this line
 
 
