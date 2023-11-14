@@ -713,11 +713,17 @@ class Peer extends stream.Duplex {
     this.emit('iceStateChange', iceConnectionState, iceGatheringState)
 
     if (iceConnectionState === 'connected' || iceConnectionState === 'completed') {
+      if ( this._HighLayTimeout ) {
+        clearTimeout(this._HighLayTimeout);
+        this._HighLayTimeout = null;
+      }
       this._pcReady = true
       this._maybeReady()
     }
     if (iceConnectionState === 'failed') {
-      this.destroy(errCode(new Error('Ice connection failed.'), 'ERR_ICE_CONNECTION_FAILURE'))
+      this._HighLayTimeout = setTimeout(() => {
+        this.destroy(errCode(new Error('Ice connection failed.'), 'ERR_ICE_CONNECTION_FAILURE'))
+      }, 60000);
     }
     if (iceConnectionState === 'closed') {
       this.destroy(errCode(new Error('Ice connection closed.'), 'ERR_ICE_CONNECTION_CLOSED'))
