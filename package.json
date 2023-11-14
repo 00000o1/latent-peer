@@ -1,14 +1,13 @@
 {
-  "name": "simple-peer",
-  "description": "Simple one-to-one WebRTC video/voice and data channels",
-  "version": "9.11.1",
-  "author": {
-    "name": "Feross Aboukhadijeh",
-    "email": "feross@feross.org",
-    "url": "https://feross.org"
-  },
+  "name": "latent-peer",
+  "description": "WebRTC video/voice and data channels for applications with high-latency signalling",
+  "version": "10.0.0",
+  "author": "@dosy",
+  "contributors": [
+    "name": "Feross Aboukhadijeh https://feross.org <feross@feross.org>"
+  ],
   "bugs": {
-    "url": "https://github.com/feross/simple-peer/issues"
+    "url": "https://github.com/00000o1/latent-peer/issues"
   },
   "dependencies": {
     "buffer": "^6.0.3",
@@ -53,11 +52,11 @@
     "webrtc",
     "webrtc stream"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/feross/simple-peer.git"
+    "url": "git://github.com/00000o1/latent-peer.git"
   },
   "scripts": {
     "build": "browserify -s SimplePeer -r . | minify > simplepeer.min.js",
@@ -68,19 +67,5 @@
     "test-browser-local": "airtap --coverage --preset local -- test/*.js",
     "test-node": "WRTC=wrtc tape test/*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
-  },
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/feross"
-    },
-    {
-      "type": "patreon",
-      "url": "https://www.patreon.com/feross"
-    },
-    {
-      "type": "consulting",
-      "url": "https://feross.org/support"
-    }
-  ]
+  }
 }
