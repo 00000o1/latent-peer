@@ -1,7 +1,7 @@
 {
   "name": "latent-peer",
   "description": "WebRTC video/voice and data channels for applications with high-latency signalling",
-  "version": "10.0.3",
+  "version": "10.0.4",
   "author": "@dosy",
   "contributors": [
     "Feross Aboukhadijeh https://feross.org <feross@feross.org>"
