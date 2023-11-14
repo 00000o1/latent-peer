@@ -4,7 +4,7 @@
   "version": "10.0.0",
   "author": "@dosy",
   "contributors": [
-    "name": "Feross Aboukhadijeh https://feross.org <feross@feross.org>"
+    "Feross Aboukhadijeh https://feross.org <feross@feross.org>"
   ],
   "bugs": {
     "url": "https://github.com/00000o1/latent-peer/issues"
@@ -38,6 +38,7 @@
     "ws": "^7.5.3"
   },
   "keywords": [
+    "high-latency",
     "data",
     "data channel",
     "data channel stream",
