@@ -724,6 +724,7 @@ class Peer extends stream.Duplex {
       this._HighLayTimeout = setTimeout(() => {
         this.destroy(errCode(new Error('Ice connection failed.'), 'ERR_ICE_CONNECTION_FAILURE'))
       }, 60000);
+      console.log(`Deferred Ice based destruction to give little Safari more time. Come on, Safari, you got this!`);
     }
     if (iceConnectionState === 'closed') {
       this.destroy(errCode(new Error('Ice connection closed.'), 'ERR_ICE_CONNECTION_CLOSED'))
