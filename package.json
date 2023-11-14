@@ -60,7 +60,7 @@
     "url": "git://github.com/00000o1/latent-peer.git"
   },
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "build": "browserify -s SimplePeer -r . | minify > simplepeer.min.js",
     "size": "npm run build && cat simplepeer.min.js | gzip | wc -c",
     "// test": "standard && npm run test-node && npm run test-browser",

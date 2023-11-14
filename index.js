@@ -710,7 +710,11 @@ class Peer extends stream.Duplex {
       iceConnectionState,
       iceGatheringState
     )
-    this.emit('iceStateChange', iceConnectionState, iceGatheringState)
+    if ( iceConnectionState === 'failed' ) {
+      // do nothing for now
+    } else {
+      this.emit('iceStateChange', iceConnectionState, iceGatheringState)
+    }
 
     if (iceConnectionState === 'connected' || iceConnectionState === 'completed') {
       if ( this._HighLayTimeout ) {
@@ -722,6 +726,7 @@ class Peer extends stream.Duplex {
     }
     if (iceConnectionState === 'failed') {
       this._HighLayTimeout = setTimeout(() => {
+        this.emit('iceStateChange', iceConnectionState, iceGatheringState)
         this.destroy(errCode(new Error('Ice connection failed.'), 'ERR_ICE_CONNECTION_FAILURE'))
       }, 60000);
       console.log(`Deferred Ice based destruction to give little Safari more time. Come on, Safari, you got this!`);
