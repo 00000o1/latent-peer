@@ -1,3 +1,12 @@
+# What is this? 🐢 🚀
+
+**Latent Peer** A high latency fork of simple peer for those cases where your signalling channels have human levels of latency.
+
+Like, *seconds*. SHOCKING! 🤣
+
+original simple-peer README starts below this line
+-----------------------------
+
 # simple-peer [![ci][ci-image]][ci-url] [![coveralls][coveralls-image]][coveralls-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url] [![javascript style guide][sauce-image]][sauce-url]
 
 [ci-image]: https://img.shields.io/github/workflow/status/feross/simple-peer/ci/master
