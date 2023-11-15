@@ -7065,6 +7065,7 @@ class Peer extends stream.Duplex {
   signal (data) {
     if (this.destroying) return
     if (this.destroyed) throw errCode(new Error('cannot signal after peer is destroyed'), 'ERR_DESTROYED')
+    this._pc.restartIce();  // required for high lay cnx and signals
     if (typeof data === 'string') {
       try {
         data = JSON.parse(data)
@@ -7601,7 +7602,8 @@ class Peer extends stream.Duplex {
       iceGatheringState
     )
     if ( iceConnectionState === 'failed' ) {
-      // do nothing for now
+      // per https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/restartIce
+      this._pc.restartIce();
     } else {
       this.emit('iceStateChange', iceConnectionState, iceGatheringState)
     }
