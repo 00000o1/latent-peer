@@ -718,7 +718,8 @@ class Peer extends stream.Duplex {
       iceGatheringState
     )
     if ( iceConnectionState === 'failed' ) {
-      // do nothing for now
+      // per https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/restartIce
+      this._pc.restartIce();
     } else {
       this.emit('iceStateChange', iceConnectionState, iceGatheringState)
     }
