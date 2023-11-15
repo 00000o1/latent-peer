@@ -6,6 +6,14 @@ Like, *seconds*. SHOCKING! 🤣
 
 Moving to v10
 
+**Modifications**:
+
+- more time after any ice failure before destroying (60 seconds vs immediate in original)
+- call restartIce at start of signal always
+- call restartIce  when ice failure occurs
+
+This grants us seemingly high latency (HIGH LAY) super powers.
+
 original simple-peer README starts below this line
 
 
