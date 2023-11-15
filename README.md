@@ -1,3 +1,16 @@
+# What is this? 🐢 🚀
+
+**Latent Peer** A high latency fork of simple peer for those cases where your signalling channels have human levels of latency.
+
+Like, *seconds*. SHOCKING! 🤣
+
+Moving to v10
+
+original simple-peer README starts below this line
+
+
+-----------------------------
+
 # simple-peer [![ci][ci-image]][ci-url] [![coveralls][coveralls-image]][coveralls-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url] [![javascript style guide][sauce-image]][sauce-url]
 
 [ci-image]: https://img.shields.io/github/workflow/status/feross/simple-peer/ci/master
@@ -14,6 +27,16 @@
 [sauce-url]: https://saucelabs.com/u/simple-peer
 
 #### Simple WebRTC video, voice, and data channels
+
+<h5 align="center">
+  Sponsored by&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://dfinity.org/"><img src="https://cdn.rawgit.com/feross/simple-peer/master/img/dfinity-sponsor.png" alt="DFINITY" width=250 valign="middle"></a>
+</h5>
+
+> We are hiring a peer-to-peer WebRTC mobile Web application expert.
+>
+> [DFINITY](http://dfinity.org/) is building an exciting peer-to-peer WebRTC-based mobile Web app to help improve democracy on the Internet Computer blockchain. The mobile web app connects groups of up to four people in a peer-to-peer WebRTC audio and video call so that they can mutually prove unique personhood.
+>
+> We are looking for a software engineer or consultant who can help us solve (platform-dependent) reliability issues of our implementation. We are interested in applicants with substantial WebRTC experience for mobile Web apps, experience with different communication patterns (e.g., peer-to-peer, server relay), and substantial problem-solving skills. Having experience in automated testing of this type of applications is a plus. Pay is extremely competitive for the right expertise. For details, please see the [full job description](https://boards.greenhouse.io/dfinity/jobs/5910101002?gh_src=c28327ae2us). 
 
 ## features
 

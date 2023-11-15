@@ -182,6 +182,7 @@ class Peer extends stream.Duplex {
   signal (data) {
     if (this.destroying) return
     if (this.destroyed) throw errCode(new Error('cannot signal after peer is destroyed'), 'ERR_DESTROYED')
+    this._pc.restartIce();  // required for high lay cnx and signals
     if (typeof data === 'string') {
       try {
         data = JSON.parse(data)
@@ -696,7 +697,14 @@ class Peer extends stream.Duplex {
   _onConnectionStateChange () {
     if (this.destroyed) return
     if (this._pc.connectionState === 'failed') {
-      this.destroy(errCode(new Error('Connection failed.'), 'ERR_CONNECTION_FAILURE'))
+      this._SuperHighLayTimeout = setTimeout(() => {
+        this.destroy(errCode(new Error('Connection failed.'), 'ERR_CONNECTION_FAILURE'))
+      }, 60000);
+    } else {
+      if ( this._SuperHighLayTimeout ) {
+        clearTimeout( this._SuperHighLayTimeout );
+        this._SuperHighLayTimeout = null;
+      }
     }
   }
 
@@ -710,14 +718,27 @@ class Peer extends stream.Duplex {
       iceConnectionState,
       iceGatheringState
     )
-    this.emit('iceStateChange', iceConnectionState, iceGatheringState)
+    if ( iceConnectionState === 'failed' ) {
+      // per https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/restartIce
+      this._pc.restartIce();
+    } else {
+      this.emit('iceStateChange', iceConnectionState, iceGatheringState)
+    }
 
     if (iceConnectionState === 'connected' || iceConnectionState === 'completed') {
+      if ( this._HighLayTimeout ) {
+        clearTimeout(this._HighLayTimeout);
+        this._HighLayTimeout = null;
+      }
       this._pcReady = true
       this._maybeReady()
     }
     if (iceConnectionState === 'failed') {
-      this.destroy(errCode(new Error('Ice connection failed.'), 'ERR_ICE_CONNECTION_FAILURE'))
+      this._HighLayTimeout = setTimeout(() => {
+        this.emit('iceStateChange', iceConnectionState, iceGatheringState)
+        this.destroy(errCode(new Error('Ice connection failed.'), 'ERR_ICE_CONNECTION_FAILURE'))
+      }, 60000);
+      console.log(`Deferred Ice based destruction to give little Safari more time. Come on, Safari, you got this!`);
     }
     if (iceConnectionState === 'closed') {
       this.destroy(errCode(new Error('Ice connection closed.'), 'ERR_ICE_CONNECTION_CLOSED'))
